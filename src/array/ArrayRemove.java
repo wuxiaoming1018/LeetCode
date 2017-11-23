@@ -35,17 +35,30 @@ public class ArrayRemove {
             if (nums[i] == val) {
                 index++;
                 if (i != nums.length - 1) {
-                    nums[i + 1] = nums[i];
+                    int temp = nums[i];
+                    nums[i] = nums[i+1];
+                    nums[i+1] = temp;
                 }
             }
         }
-        return nums.length - index;
+        int count = nums.length - index;
+        index=0;
+        int[] result = new int[count];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                result[i] = nums[i];
+            }
+        }
+        for (int i : result) {
+            System.out.print(i + " ");
+        }
+        return count;
 
     }
 
     public static void main(String[] args) {
         ArrayRemove ar = new ArrayRemove();
-        int remove = ar.remove(new int[]{5, 8, 1, 4, 9, 3, 19, 3, 3, 3}, 3);
+        int remove = ar.remove(new int[]{5, 8, 1, 4, 9, 3, 19, 29,3, 3, 3}, 3);
         if (remove == -1) {
             System.out.println("\n输入的数组为空或者需要删除的元素不存在");
         } else {
