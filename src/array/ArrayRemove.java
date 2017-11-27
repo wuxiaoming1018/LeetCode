@@ -30,7 +30,7 @@ public class ArrayRemove {
 
     private int remove(int[] nums, int val) {
         if (nums == null || nums.length == 0) {
-            return -1;
+            return 0;
         }
         int index = 0;
         for (int num : nums) {
@@ -54,7 +54,8 @@ public class ArrayRemove {
 
     public static void main(String[] args) {
         ArrayRemove ar = new ArrayRemove();
-        int[] ints = new int[]{53, 3, 8, 9, 1, 7, 4, 9, 3, 19, 29, 3, 3, 3};
+        int[] ints = new int[]{3, 2, 2, 3, 3, 5, 8, 3};
+//        ar.remove2(ints,3);
         System.out.println("删除之前:");
         for (int anInt : ints) {
             System.out.print(anInt + " ");
@@ -65,5 +66,32 @@ public class ArrayRemove {
         } else {
             System.out.println("\n删除后的length:" + remove + "");
         }
+        ar.removeDuplicates(ints);
     }
+
+    private int removeDuplicates(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != nums[index]) {
+                index++;
+                nums[index] = nums[i];
+            }
+        }
+        System.out.println("\nindex=" + index);
+        return index + 1;
+    }
+
+   /* private int remove2(int[] nums,int val){
+        int i = 0;
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] != val) {
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+        return i;
+    }*/
 }
