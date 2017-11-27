@@ -6,6 +6,7 @@ package array;
  * @date 2017-11-23 10:27
  */
 
+
 /**
  * 数组02 - 删除元素 - 简单 - 27
  * 给定一个数组和一个值，原地移除数组中所有给定的值，并返回新数组的长度。
@@ -25,44 +26,44 @@ package array;
  * Your function should return length = 2, with the first two elements of nums being 2.
  */
 public class ArrayRemove {
+    private int count = 0;
 
     private int remove(int[] nums, int val) {
         if (nums == null || nums.length == 0) {
             return -1;
         }
         int index = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == val) {
+        for (int num : nums) {
+            if (num != val) {
                 index++;
-                if (i != nums.length - 1) {
-                    int temp = nums[i];
-                    nums[i] = nums[i+1];
-                    nums[i+1] = temp;
-                }
             }
         }
-        int count = nums.length - index;
-        index=0;
-        int[] result = new int[count];
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != val) {
-                result[i] = nums[i];
+        int[] results = new int[index];
+        for (int num : nums) {
+            if (num != val) {
+                results[count] = num;
+                count++;
             }
         }
-        for (int i : result) {
-            System.out.print(i + " ");
+        System.out.println("\n删除之后:");
+        for (int result : results) {
+            System.out.print(result + " ");
         }
-        return count;
-
+        return index;
     }
 
     public static void main(String[] args) {
         ArrayRemove ar = new ArrayRemove();
-        int remove = ar.remove(new int[]{5, 8, 1, 4, 9, 3, 19, 29,3, 3, 3}, 3);
+        int[] ints = new int[]{53, 3, 8, 9, 1, 7, 4, 9, 3, 19, 29, 3, 3, 3};
+        System.out.println("删除之前:");
+        for (int anInt : ints) {
+            System.out.print(anInt + " ");
+        }
+        int remove = ar.remove(ints, 3);
         if (remove == -1) {
             System.out.println("\n输入的数组为空或者需要删除的元素不存在");
         } else {
-            System.out.println("\n" + remove + "");
+            System.out.println("\n删除后的length:" + remove + "");
         }
     }
 }
